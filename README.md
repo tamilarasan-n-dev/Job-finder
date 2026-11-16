@@ -34,7 +34,20 @@ Then it gets points: the best title match (15–35), early-career level (+4 to +
 
 To tune it, edit `config/profile.yaml` and `config/companies.yaml` on the VM. Changes apply on the next run, with no rebuild or restart needed.
 
-## Deploy (Google Cloud VM)
+## Deploy from a phone (no SSH)
+
+`scripts/gcp-startup.sh` deploys itself on every boot using settings from the VM's metadata, so the whole setup is done from the Google Cloud console:
+
+1. **VM → Edit → Metadata → Add item** for each key: `jf-smtp-user`, `jf-smtp-pass`, `jf-mail-to` (required), and optionally `jf-mail-bcc`, `jf-admin-email`, `jf-smtp-host` (default `smtp.gmail.com`), `jf-smtp-port` (default `465`).
+2. **Edit → Automation → Startup script**, paste:
+   ```
+   curl -fsSL https://raw.githubusercontent.com/tamilarasan-n-dev/Job-finder/main/scripts/gcp-startup.sh | bash
+   ```
+3. **Save**, then **Reset** the VM. Watch progress under **Logs → Serial port 1**. Look for `[job-finder]` lines ending in `running ✔`.
+
+To pull new code or apply changed settings, just **Reset** the VM again. Metadata values are visible to anyone with access to your Cloud project.
+
+## Deploy over SSH (Google Cloud VM)
 
 **1. Create the VM.** An e2-micro or e2-small running Debian/Ubuntu is plenty, since the container is capped at 256 MB. No inbound ports are needed.
 
