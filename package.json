@@ -1,0 +1,34 @@
+{
+  "name": "job-finder",
+  "version": "1.0.0",
+  "description": "Hourly job finder: pulls openings from public ATS boards and remote feeds, matches them to a profile, and emails new matches.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node --no-warnings=ExperimentalWarning dist/index.js daemon",
+    "run-once": "node --no-warnings=ExperimentalWarning dist/index.js run",
+    "dry-run": "node --no-warnings=ExperimentalWarning dist/index.js run --dry-run",
+    "verify": "node --no-warnings=ExperimentalWarning dist/index.js verify",
+    "test-email": "node --no-warnings=ExperimentalWarning dist/index.js test-email",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "fast-xml-parser": "^5.12.1",
+    "node-cron": "^4.6.0",
+    "nodemailer": "^10.6.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/nodemailer": "^8.0.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  }
+}

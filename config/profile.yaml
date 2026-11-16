@@ -1,0 +1,79 @@
+# Matching profile — built from Syed Abdul Rahman's LinkedIn PDF (Nov 2026).
+# Full-Stack Engineer, ~1.3 yrs (Enarxi, Aug 2025–present) + internships, MCA 2026, Chennai.
+#
+# All `pattern` values are case-insensitive JavaScript regular expressions.
+# Edit freely — no rebuild needed, the file is read on every run.
+
+name: Syed Abdul Rahman
+
+# A job needs at least this score to be emailed (see README → "How scoring works").
+minScore: 45
+
+# Ignore postings older than this (only applies when the source gives a date).
+maxAgeDays: 21
+
+# If the description asks for MORE than this many years minimum, drop the job.
+maxYearsRequired: 3
+
+location:
+  # Accept "Remote – India", "Remote (IN)", "Anywhere in India", etc.
+  allowRemoteIndia: true
+  # Accept remote roles open to "APAC" / "Asia" with no country named. Off = India only.
+  allowAsiaRemote: false
+  # Any Indian city is accepted; these get a bonus.
+  preferredCities:
+    - { pattern: "chennai|madras", bonus: 15, label: "Chennai" }
+    - { pattern: "bengaluru|bangalore", bonus: 4, label: "Bengaluru" }
+    - { pattern: "coimbatore|madurai", bonus: 4, label: "Tamil Nadu" }
+
+titles:
+  # The title must match at least one of these.
+  include:
+    - { pattern: "full[\\s-]?stack", weight: 35, label: "Full-stack role" }
+    - { pattern: "back[\\s-]?end", weight: 28, label: "Backend role" }
+    - { pattern: "front[\\s-]?end", weight: 22, label: "Frontend role" }
+    - { pattern: "\\b(node(\\.?js)?|react(\\.?js)?|next\\.?js|javascript|typescript|mern)\\b", weight: 28, label: "JS/TS stack in title" }
+    - { pattern: "\\bsde\\b|software (development )?engineer|software developer|member of technical staff|\\bmts\\b", weight: 22, label: "Software engineer role" }
+    - { pattern: "web (developer|engineer)|application (developer|engineer)|product engineer", weight: 18, label: "Web/product engineer" }
+    - { pattern: "forward[\\s-]deployed", weight: 15, label: "Forward-deployed engineer" }
+
+  # Any match here drops the job.
+  exclude:
+    - "\\b(senior|sr\\.?|staff|principal|lead|leader|manager|director|head|vp|vice president|architect|distinguished|fellow)\\b"
+    - "\\b(iii|iv|3|4|5)\\b\\s*$"                      # "Software Engineer III"
+    - "\\b(sde|swe|engineer|developer)[\\s-]*(iii|iv|3|4)\\b"
+    - "\\bl[5-9]\\b"
+    - "\\bintern(ship)?\\b|\\btrainee\\b|apprentice"
+    - "\\b(android|ios|swift|kotlin|flutter|embedded|firmware|salesforce|sap|mainframe|cobol|php|wordpress|magento|unity|game)\\b"
+    - "\\.net\\b|\\bc#|\\bc\\+\\+"
+    - "\\b(qa|sdet|test(ing)?|quality|devops|sre|site reliability|security|network|data (scientist|analyst)|analyst|machine learning|ml engineer|research|support|solutions? (consultant|engineer)|sales|presales|technical writer|recruit)"
+
+  # Small boost when the title signals an early-career level.
+  juniorSignals:
+    - { pattern: "\\b(sde|swe|engineer|developer)[\\s-]*(i|1)\\b|\\b(junior|jr\\.?|associate|entry|graduate|new grad|early career)\\b", bonus: 12, label: "Early-career level" }
+    - { pattern: "\\b(sde|swe|engineer|developer)[\\s-]*(ii|2)\\b", bonus: 4, label: "Level II" }
+
+# Skills from the profile, matched against title + description. Total is capped at maxSkillPoints.
+maxSkillPoints: 40
+skills:
+  - { name: React, pattern: "\\breact(\\.?js)?\\b", weight: 5 }
+  - { name: Next.js, pattern: "\\bnext\\.?js\\b", weight: 5 }
+  - { name: Node.js, pattern: "\\bnode(\\.?js)?\\b", weight: 6 }
+  - { name: TypeScript, pattern: "\\btypescript\\b|\\bts\\b", weight: 4 }
+  - { name: JavaScript, pattern: "\\bjavascript\\b|\\bes6\\b", weight: 3 }
+  - { name: PostgreSQL, pattern: "\\bpostgres(ql)?\\b", weight: 6 }
+  - { name: Redis, pattern: "\\bredis\\b", weight: 4 }
+  - { name: MongoDB, pattern: "\\bmongo(db)?\\b", weight: 3 }
+  - { name: Express, pattern: "\\bexpress(\\.?js)?\\b", weight: 2 }
+  - { name: Queues/BullMQ, pattern: "\\bbullmq\\b|\\bmessage queues?\\b|\\bkafka\\b|\\brabbitmq\\b", weight: 3 }
+  - { name: MQTT/IoT, pattern: "\\bmqtt\\b|\\biot\\b", weight: 4 }
+  - { name: Realtime (SSE/WebSockets), pattern: "websockets?|socket\\.io|server-sent events|\\bsse\\b", weight: 3 }
+  - { name: Tailwind, pattern: "\\btailwind", weight: 2 }
+  - { name: SQL, pattern: "\\bsql\\b", weight: 2 }
+  - { name: REST/GraphQL, pattern: "\\brest(ful)?\\b|\\bgraphql\\b", weight: 2 }
+  - { name: Docker, pattern: "\\bdocker\\b", weight: 2 }
+  - { name: System design / distributed systems, pattern: "system design|distributed systems?|scalab", weight: 3 }
+  - { name: DSA, pattern: "data structures|algorithms", weight: 2 }
+
+# Bonus when the description's experience range fits ~1–3 years.
+experienceFitBonus: 10

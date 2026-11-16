@@ -1,0 +1,50 @@
+# Company job boards to scan. Seeded from the Notion pages
+# "Job Search Pipeline — SWE / Backend / AI Engineer (India + Remote)" and
+# "Fresh Jobs — 24h Scan (2026-09-17)".
+#
+# ats: greenhouse | lever | ashby | smartrecruiters | workable
+# slug: the board id in the company's job URL, e.g.
+#   job-boards.greenhouse.io/<slug>/jobs/...   jobs.lever.co/<slug>/...
+#   jobs.ashbyhq.com/<slug>/...                jobs.smartrecruiters.com/<slug>/...
+#   apply.workable.com/<slug>/...
+#
+# Run `npm run verify` (or `docker compose run --rm job-finder verify`) after editing:
+# it checks every board and tells you which slugs are wrong.
+# Set `enabled: false` to pause one without deleting it.
+
+companies:
+  # ── Slugs taken from real job URLs in Notion ─────────────────────────
+  - { name: GitLab, ats: greenhouse, slug: gitlab }
+  - { name: Atomicwork, ats: greenhouse, slug: atomicwork }
+  - { name: HackerRank, ats: greenhouse, slug: hackerrank }
+  - { name: Cloudflare, ats: greenhouse, slug: cloudflare }
+  - { name: Grafana Labs, ats: greenhouse, slug: grafanalabs }
+  - { name: AssemblyAI, ats: greenhouse, slug: assemblyai }
+  - { name: Celonis, ats: greenhouse, slug: celonis }
+  - { name: New Relic, ats: greenhouse, slug: newrelic }
+  - { name: OneTrust, ats: greenhouse, slug: onetrust }
+  - { name: Pure Storage, ats: greenhouse, slug: purestorage }
+  - { name: Twilio, ats: greenhouse, slug: twilio }
+  - { name: Zscaler, ats: greenhouse, slug: zscaler }
+  - { name: Mindtickle, ats: lever, slug: mindtickle }
+  - { name: Fi Money (epiFi), ats: lever, slug: epifi }
+  - { name: Hevo Data, ats: lever, slug: hevodata }
+  - { name: Nium, ats: lever, slug: nium }
+  - { name: Supabase, ats: ashby, slug: supabase }
+  - { name: Nanonets, ats: ashby, slug: nanonets }
+  - { name: Flywire, ats: smartrecruiters, slug: Flywire1 }
+
+  # ── Greenhouse boards linked from company sites (slug = company name; verify) ──
+  - { name: Databricks, ats: greenhouse, slug: databricks }
+  - { name: Elastic, ats: greenhouse, slug: elastic }
+  - { name: Fivetran, ats: greenhouse, slug: fivetran }
+  - { name: MongoDB, ats: greenhouse, slug: mongodb }
+  - { name: Okta, ats: greenhouse, slug: okta }
+  - { name: Samsara, ats: greenhouse, slug: samsara }
+  - { name: Bitwarden, ats: greenhouse, slug: bitwarden }
+  - { name: Observe.AI, ats: greenhouse, slug: observeai }
+
+  # ── Extra India-heavy boards (not from Notion; run `verify` and drop any that 404) ──
+  - { name: Postman, ats: greenhouse, slug: postman }
+  - { name: Freshworks, ats: smartrecruiters, slug: Freshworks }
+  - { name: Innovaccer, ats: workable, slug: innovaccer }
